@@ -52,7 +52,91 @@ How to prevent similar issues in the future.
 
 ## Resolved Bugs
 
-*No resolved bugs at this time.*
+### Bug ID: BUG-002
+- **Title:** Material Icons compilation errors - non-existent icons
+- **Severity:** Critical
+- **Priority:** P1
+- **Status:** Resolved
+- **Reporter:** Development Agent
+- **Assignee:** Development Agent
+- **Date Reported:** 2025-01-21
+- **Date Resolved:** 2025-01-21
+- **Environment:** Debug build, Android Studio
+
+#### Description
+Compilation errors due to using non-existent Material Icons:
+1. Icons.Default.Directions - does not exist
+2. Icons.Default.Remove - does not exist  
+3. Icons.Default.Map - does not exist
+
+#### Root Cause
+Using Material Icons that are not available in the standard androidx.compose.material.icons.filled package.
+
+#### Resolution
+Replaced with existing Material Icons:
+- Icons.Default.Directions → Icons.Default.DirectionsWalk
+- Icons.Default.ZoomOut → Icons.Default.Remove (standard minus icon)
+- Icons.Default.Map → Icons.Default.Settings (for map style toggle)
+
+All compilation errors resolved successfully.
+
+### Bug ID: BUG-001
+- **Title:** Compilation errors in UI components - missing imports and unresolved references
+- **Severity:** Critical
+- **Priority:** P1
+- **Status:** Resolved
+- **Reporter:** Development Agent
+- **Assignee:** Development Agent
+- **Date Reported:** 2025-01-21
+- **Date Resolved:** 2025-01-21
+- **Environment:** Debug build, Android Studio
+
+#### Description
+Multiple compilation errors in UI components preventing successful build:
+1. Missing Material Icons imports (Directions, MyLocation, Remove, Layers)
+2. Unresolved background modifier references
+3. Import issues in newly created components
+
+#### Steps to Reproduce
+1. Run `./gradlew assembleDebug`
+2. Compilation fails with Kotlin compiler errors
+
+#### Expected Behavior
+Project should compile successfully without errors.
+
+#### Actual Behavior
+Build fails with multiple "Unresolved reference" errors in:
+- AttractionDetailCard.kt
+- AttractionSearchBar.kt  
+- MapControls.kt
+- MapStyleToggle.kt
+
+#### Screenshots/Logs
+```
+e: Unresolved reference 'Directions'
+e: Unresolved reference 'MyLocation'
+e: Unresolved reference 'Remove'
+e: Unresolved reference 'Layers'
+e: Unresolved reference 'background'
+```
+
+#### Root Cause
+Missing imports for Material Icons and Foundation modifiers in newly created Compose components.
+
+#### Resolution
+Fixed all compilation errors by:
+1. Added missing import `androidx.compose.foundation.background` to AttractionDetailCard.kt and AttractionSearchBar.kt
+2. Replaced non-existent Material Icons with available alternatives:
+   - `MyLocation` → `LocationOn`
+   - `ZoomOut` → `Remove` 
+   - `Layers` → `Map`
+3. Removed duplicate background modifier extension functions
+4. Cleaned Gradle cache and restarted daemon
+
+#### Prevention
+- Use IDE auto-import features and verify all imports before committing code
+- Check Material Icons documentation for available icons
+- Test compilation after adding new UI components
 
 ---
 

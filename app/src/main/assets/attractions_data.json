@@ -1,0 +1,90 @@
+[
+  {
+    "id": 1,
+    "name": "Плато Лаго-Наки",
+    "description": "Высокогорное плато в Кавказском биосферном заповеднике. Известно своими альпийскими лугами, пещерами и живописными видами.",
+    "latitude": 44.009722,
+    "longitude": 39.993889,
+    "category": "NATURE",
+    "photoUrl": null,
+    "rating": 4.8,
+    "isOfflineAvailable": true
+  },
+  {
+    "id": 2,
+    "name": "Хаджохская теснина",
+    "description": "Уникальный каньон реки Белой с отвесными скалами высотой до 35 метров. Популярное место для пеших прогулок.",
+    "latitude": 44.287778,
+    "longitude": 40.175556,
+    "category": "NATURE",
+    "photoUrl": null,
+    "rating": 4.6,
+    "isOfflineAvailable": true
+  },
+  {
+    "id": 3,
+    "name": "Водопады Руфабго",
+    "description": "Каскад из 10 водопадов в ущелье реки Руфабго. Маршрут проходит по живописной тропе через лес.",
+    "latitude": 44.194444,
+    "longitude": 40.166667,
+    "category": "NATURE",
+    "photoUrl": null,
+    "rating": 4.7,
+    "isOfflineAvailable": true
+  },
+  {
+    "id": 4,
+    "name": "Национальный музей Республики Адыгея",
+    "description": "Главный музей республики с богатой коллекцией археологических находок, этнографических экспонатов и произведений искусства.",
+    "latitude": 44.609764,
+    "longitude": 40.100516,
+    "category": "CULTURAL",
+    "photoUrl": null,
+    "rating": 4.3,
+    "isOfflineAvailable": false
+  },
+  {
+    "id": 5,
+    "name": "Майкопский курган",
+    "description": "Археологический памятник эпохи бронзы. Один из самых богатых курганов Северного Кавказа.",
+    "latitude": 44.611111,
+    "longitude": 40.111111,
+    "category": "HISTORICAL",
+    "photoUrl": null,
+    "rating": 4.1,
+    "isOfflineAvailable": false
+  },
+  {
+    "id": 6,
+    "name": "Гора Фишт",
+    "description": "Одна из самых известных вершин Западного Кавказа высотой 2867 метров. Популярное место для альпинизма и треккинга.",
+    "latitude": 43.966667,
+    "longitude": 39.883333,
+    "category": "NATURE",
+    "photoUrl": null,
+    "rating": 4.9,
+    "isOfflineAvailable": true
+  },
+  {
+    "id": 7,
+    "name": "Термальные источники Тульского",
+    "description": "Природные горячие источники с лечебными свойствами. Температура воды достигает +85°C.",
+    "latitude": 44.433333,
+    "longitude": 40.083333,
+    "category": "NATURE",
+    "photoUrl": null,
+    "rating": 4.4,
+    "isOfflineAvailable": false
+  },
+  {
+    "id": 8,
+    "name": "Свято-Михайловский монастырь",
+    "description": "Православный мужской монастырь, основанный в 1877 году. Расположен в живописном месте среди гор.",
+    "latitude": 44.283333,
+    "longitude": 40.183333,
+    "category": "CULTURAL",
+    "photoUrl": null,
+    "rating": 4.5,
+    "isOfflineAvailable": false
+  }
+]

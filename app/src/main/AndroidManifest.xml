@@ -2,7 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Permissions for Yandex MapKit -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
+        android:name=".AdygyesApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -12,6 +19,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Adygyes"
         tools:targetApi="31">
+        
+        <!-- Yandex MapKit API Key (placeholder - needs to be replaced with actual key) -->
+        <meta-data
+            android:name="com.yandex.mapkit.ApiKey"
+            android:value="96a70138-5c3d-4b3e-a9fa-b74e645a6a30" />
+        
         <activity
             android:name=".MainActivity"
             android:exported="true"
