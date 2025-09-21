@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId = "com.adygyes"
-        minSdk = 24
+        minSdk = 26  // Updated to match Yandex MapKit 4.22.0 requirement
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
@@ -70,8 +70,8 @@ dependencies {
     implementation("androidx.room:room-ktx:2.6.1")
     kapt("androidx.room:room-compiler:2.6.1")
     
-    // Yandex MapKit
-    implementation("com.yandex.android:maps.mobile:4.4.0-full")
+    // Yandex MapKit - Updated to latest version for Android 14 compatibility
+    implementation("com.yandex.android:maps.mobile:4.22.0-full")
     
     // Networking (for future use)
     implementation("com.squareup.retrofit2:retrofit:2.9.0")

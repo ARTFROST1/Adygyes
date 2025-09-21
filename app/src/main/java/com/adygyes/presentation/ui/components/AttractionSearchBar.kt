@@ -25,10 +25,19 @@ fun AttractionSearchBar(
     onSearch: () -> Unit,
     suggestions: List<Attraction> = emptyList(),
     onSuggestionClick: (Attraction) -> Unit = {},
+    onDismiss: () -> Unit = {},
     modifier: Modifier = Modifier,
-    placeholder: String = "Поиск достопримечательностей..."
+    placeholder: String = "Поиск достопримечательностей...",
+    autoFocus: Boolean = false
 ) {
-    var isActive by remember { mutableStateOf(false) }
+    var isActive by remember { mutableStateOf(autoFocus) }
+    
+    // Автоматически активируем поиск при autoFocus
+    LaunchedEffect(autoFocus) {
+        if (autoFocus) {
+            isActive = true
+        }
+    }
     
     Column(modifier = modifier) {
         SearchBar(
@@ -54,6 +63,7 @@ fun AttractionSearchBar(
                         onClick = {
                             onQueryChange("")
                             isActive = false
+                            onDismiss()
                         }
                     ) {
                         Icon(

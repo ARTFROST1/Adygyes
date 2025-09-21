@@ -23,8 +23,8 @@ fun YandexMapView(
     attractions: List<Attraction> = emptyList(),
     mapStyle: MapStyle = MapStyle.SCHEMA,
     onMarkerClick: (Attraction) -> Unit = {},
-    onZoomIn: (() -> Unit)? = null,
-    onZoomOut: (() -> Unit)? = null,
+    zoomInTrigger: Int = 0, // Увеличивается для zoom in
+    zoomOutTrigger: Int = 0, // Увеличивается для zoom out
     onLocationClick: (() -> Unit)? = null,
     initialCameraPosition: CameraPosition = CameraPosition(
         Point(44.6098, 40.1006), // Майкоп - столица Адыгеи
@@ -36,6 +36,48 @@ fun YandexMapView(
     val context = LocalContext.current
     var mapView: MapView? by remember { mutableStateOf(null) }
     var mapObjectCollection: MapObjectCollection? by remember { mutableStateOf(null) }
+    
+    // Функции для управления масштабом
+    val zoomIn = {
+        mapView?.mapWindow?.map?.let { map ->
+            val currentPosition = map.cameraPosition
+            val newZoom = (currentPosition.zoom + 1f).coerceAtMost(21f) // Максимальный zoom 21
+            val newPosition = CameraPosition(
+                currentPosition.target,
+                newZoom,
+                currentPosition.azimuth,
+                currentPosition.tilt
+            )
+            map.move(newPosition, Animation(Animation.Type.SMOOTH, 0.3f), null)
+        }
+    }
+    
+    val zoomOut = {
+        mapView?.mapWindow?.map?.let { map ->
+            val currentPosition = map.cameraPosition
+            val newZoom = (currentPosition.zoom - 1f).coerceAtLeast(0f) // Минимальный zoom 0
+            val newPosition = CameraPosition(
+                currentPosition.target,
+                newZoom,
+                currentPosition.azimuth,
+                currentPosition.tilt
+            )
+            map.move(newPosition, Animation(Animation.Type.SMOOTH, 0.3f), null)
+        }
+    }
+    
+    // Реагируем на изменения триггеров масштабирования
+    LaunchedEffect(zoomInTrigger) {
+        if (zoomInTrigger > 0) {
+            zoomIn()
+        }
+    }
+    
+    LaunchedEffect(zoomOutTrigger) {
+        if (zoomOutTrigger > 0) {
+            zoomOut()
+        }
+    }
 
     DisposableEffect(context) {
         onDispose {
@@ -74,16 +116,11 @@ fun YandexMapView(
             }
             view.mapWindow.map.mapType = yandexMapType
             
-            // Set up zoom controls
-            onZoomIn?.let { zoomInCallback ->
-                // Store callback for later use
-            }
-            onZoomOut?.let { zoomOutCallback ->
-                // Store callback for later use
-            }
-            onLocationClick?.let { locationCallback ->
-                // Store callback for later use
-            }
+            // Enable zoom gestures and controls
+            view.mapWindow.map.isZoomGesturesEnabled = true
+            view.mapWindow.map.isScrollGesturesEnabled = true
+            view.mapWindow.map.isTiltGesturesEnabled = true
+            view.mapWindow.map.isRotateGesturesEnabled = true
             
             // Update markers when attractions change
             mapObjectCollection?.let { collection ->
